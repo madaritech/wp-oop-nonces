@@ -13,6 +13,20 @@ namespace madaritech\nonces;
 final class Nonce_Validator extends Nonce_Abstract {
 
 	/**
+	 * Class constructor.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param    string $param_action Action name.
+	 * @param    string $param_name   Optional. Nonce name. Default '_wpnonce'.
+	 */
+	public function __construct( $param_action, $param_name = '_wpnonce' ) {
+		$this->set_action( $param_action );
+		$this->set_name( $param_name );
+		$this->set_nonce( null );
+	}
+
+	/**
 	 * Validate the nonce.
 	 *
 	 * @since 1.0.0
@@ -35,23 +49,16 @@ final class Nonce_Validator extends Nonce_Abstract {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param     string $param_action     Action name.
-	 * @param     string $param_name       Optional. The nonce request name. Default = '_wpnonce'.
 	 * @return    boolean $is_valid        Boolean false if the nonce is invalid. Otherwise, returns true.
 	 */
-	public function validate_request( $param_action, $param_name = '_wpnonce' ) {
+	public function validate_request() {
 
 		$is_valid = false;
 
-		$this->set_action( $param_action );
-		$this->set_name( $param_name );
+		if ( isset( $_REQUEST[ $this->get_name() ] ) ) {
 
-		if ( isset( $_REQUEST[ $this->name() ] ) ) {
-
-			$nonce_received = sanitize_text_field( wp_unslash( $_REQUEST[ $this->name() ] ) );
-
+			$nonce_received = sanitize_text_field( wp_unslash( $_REQUEST[ $this->get_name() ] ) );
 			$this->set_nonce( $nonce_received );
-
 			$is_valid = $this->validate();
 
 		}
@@ -65,16 +72,12 @@ final class Nonce_Validator extends Nonce_Abstract {
 	 * @since 1.0.0
 	 *
 	 * @param string $param_nonce  Nonce value.
-	 * @param string $param_action Action name.
 	 * @return    boolean $is_valid Boolean false if the nonce is invalid. Otherwise, returns true.
 	 */
-	private function validate_nonce( $param_nonce, $param_action ) {
+	public function validate_nonce( $param_nonce ) {
 
 		$is_valid = false;
-
-		$this->set_action( $param_action );
 		$this->set_nonce( $param_nonce );
-
 		$is_valid = $this->validate();
 
 		return $is_valid;

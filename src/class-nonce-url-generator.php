@@ -36,7 +36,6 @@ final class Nonce_Url_Generator extends Nonce_Generator {
 
 		$this->generate_nonce();
 
-		$action = $this->get_action();
 		$name   = $this->get_name();
 		$nonce  = $this->get_nonce();
 

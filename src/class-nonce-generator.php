@@ -20,9 +20,22 @@ class Nonce_Generator extends Nonce_Abstract {
 	 * @param    string $param_action     The nonce action value.
 	 * @param    string $param_name       Optional. The nonce request name. Default = '_wpnonce'.
 	 */
-	public function __construct( $param_action, $param_name = '_wpnonce' ) {
+	/*public function __construct( $param_action, $param_name = '_wpnonce' ) {
 		$this->set_action( $param_action );
 		$this->set_name( $param_name );
+		$this->set_nonce( null );
+	}*/
+
+	/**
+	 * Class constructor.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param    string $param_action     The nonce action value.
+	 * @param    string $param_name       Optional. The nonce request name. Default = '_wpnonce'.
+	 */
+	public function __construct( $param_action, $param_name = '_wpnonce' ) {
+		parent::__construct( $param_action, $param_name );
 	}
 
 	/**
