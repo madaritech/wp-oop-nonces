@@ -2,11 +2,11 @@
 
 namespace madaritech\nonces\test;
 
-require_once dirname(__DIR__) . "/src/nonce-interface.php";
+/*require_once dirname(__DIR__) . "/src/nonce-interface.php";
 require_once dirname(__DIR__) . "/src/nonce-abstract.php";
 require_once dirname(__DIR__) . "/src/class-nonce-generator.php";
 require_once dirname(__DIR__) . "/src/class-nonce-field-generator.php";
-require_once dirname(__DIR__) . "/test/mock-functions.php";
+require_once dirname(__DIR__) . "/test/mock-functions.php";*/
 
 use madaritech\nonces\Nonce_Field_Generator;
 use PHPUnit\Framework\TestCase;
