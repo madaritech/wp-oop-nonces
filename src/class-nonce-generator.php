@@ -2,7 +2,7 @@
 /**
  * Nonce generator file.
  *
- * @package    madaritech-wp-nonce
+ * @package    madaritech/wp-oop-nonces
  */
 
 namespace madaritech\nonces;
