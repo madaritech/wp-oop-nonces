@@ -21,9 +21,7 @@ final class Nonce_Validator extends Nonce_Abstract {
 	 * @param    string $param_name   Optional. Nonce name. Default '_wpnonce'.
 	 */
 	public function __construct( $param_action, $param_name = '_wpnonce' ) {
-		$this->set_action( $param_action );
-		$this->set_name( $param_name );
-		$this->set_nonce( null );
+		parent::__construct( $param_action, $param_name );
 	}
 
 	/**
