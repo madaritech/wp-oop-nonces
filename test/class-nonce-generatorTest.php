@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  */
 class Nonce_GeneratorTest extends TestCase
 {
-		/**
+	/**
 	* Test action.
 	*
 	* @var    string $test_action The default test action value.
