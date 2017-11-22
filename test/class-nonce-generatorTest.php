@@ -39,7 +39,8 @@ class Nonce_GeneratorTest extends TestCase
  		$this->test_action = 'my_action';
  		$this->test_name = 'my_name';
 
- 		$this->test_ng = new Nonce_Generator( $this->test_action );
+ 		$this->test_ng1 = new Nonce_Generator( $this->test_action );
+ 		$this->test_ng2 = new Nonce_Generator( $this->test_action, $this->test_name );
  		
  		// Building nonce value.
  		$this->test_nonce = \madaritech\nonces\wp_create_nonce( $this->test_action );
@@ -50,8 +51,8 @@ class Nonce_GeneratorTest extends TestCase
  	*/
 	public function test_instance() {
 
-		$this->assertInstanceOf( Nonce_Generator::class, new Nonce_Generator( $this->test_action, $this->test_name ) );
-		$this->assertInstanceOf( Nonce_Generator::class, $this->test_ng );
+		$this->assertInstanceOf( Nonce_Generator::class, $this->test_ng2 );
+		$this->assertInstanceOf( Nonce_Generator::class, $this->test_ng1 );
 	}
 
 	/**
@@ -59,7 +60,7 @@ class Nonce_GeneratorTest extends TestCase
  	*/
 	public function test_get_set_action() {
 
- 		$ng = new Nonce_Generator( $this->test_action, $this->test_name );
+ 		$ng = $this->test_ng2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_action, $ng->get_action() );
@@ -74,7 +75,7 @@ class Nonce_GeneratorTest extends TestCase
  	*/
  	public function test_get_set_name() {
 
- 		$ng = new Nonce_Generator($this->test_action, $this->test_name);
+ 		$ng = $this->test_ng2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_name, $ng->get_name() );
@@ -104,7 +105,7 @@ class Nonce_GeneratorTest extends TestCase
  	*/
  	public function test_generate_nonce() {
 
-		$ng = new Nonce_Generator($this->test_action);
+		$ng = $this->test_ng1;
 
 		// The constructor sets nonce property to null. Checking null value.
 		$this->assertNull( $ng->get_nonce() );
@@ -122,13 +123,13 @@ class Nonce_GeneratorTest extends TestCase
  	public function test_get_set_nonce() {
 		
 		// Generating the nonce.
- 		$nonce_generated = $this->test_ng->generate_nonce();
+ 		$nonce_generated = $this->test_ng1->generate_nonce();
  		
  		// Setting new value for the nonce.
- 		$this->test_ng->set_nonce( 'new_nonce' );
+ 		$this->test_ng1->set_nonce( 'new_nonce' );
 
  		// Getting and cheking the nonce value.
- 		$this->assertNotEquals( $nonce_generated, $this->test_ng->get_nonce() );
- 		$this->assertSame( 'new_nonce', $this->test_ng->get_nonce() );
+ 		$this->assertNotEquals( $nonce_generated, $this->test_ng1->get_nonce() );
+ 		$this->assertSame( 'new_nonce', $this->test_ng1->get_nonce() );
  	}
 }

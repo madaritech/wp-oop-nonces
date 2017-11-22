@@ -39,7 +39,8 @@ class Nonce_Field_GeneratorTest extends TestCase
  		$this->test_action = 'my_action';
  		$this->test_name = 'my_name';
 
- 		$this->test_nfg = new Nonce_Field_Generator( $this->test_action );
+ 		$this->test_nfg1 = new Nonce_Field_Generator( $this->test_action );
+ 		$this->test_nfg2 = new Nonce_Field_Generator( $this->test_action, $this->test_name );
  		
  		// Building nonce value.
  		$this->test_nonce = \madaritech\nonces\wp_create_nonce( $this->test_action );
@@ -50,8 +51,8 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
     public function test_instance() {
 
-		$this->assertInstanceOf( Nonce_Field_Generator::class, new Nonce_Field_Generator( $this->test_action, $this->test_name ) );
-		$this->assertInstanceOf( Nonce_Field_Generator::class, $this->test_nfg );
+		$this->assertInstanceOf( Nonce_Field_Generator::class, $this->test_nfg1 );
+		$this->assertInstanceOf( Nonce_Field_Generator::class, $this->test_nfg2 );
 	}
 
 	/**
@@ -59,7 +60,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
 	public function test_get_set_action() {
 
- 		$nfg = new Nonce_Field_Generator( $this->test_action, $this->test_name );
+ 		$nfg = $this->test_nfg2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_action, $nfg->get_action() );
@@ -74,7 +75,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
  	public function test_get_set_name() {
 
- 		$nfg = new Nonce_Field_Generator($this->test_action, $this->test_name);
+ 		$nfg = $this->test_nfg2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_name, $nfg->get_name() );
@@ -104,10 +105,11 @@ class Nonce_Field_GeneratorTest extends TestCase
  	public function test_generate_nonce() {
 
 		// Generating the nonce.
-		$nonce_generated = $this->test_nfg->generate_nonce();
+		$nonce_generated = $this->test_nfg1->generate_nonce();
 
 		// Check the nonce.
 		$this->assertSame( $nonce_generated, $this->test_nonce );
+		$this->assertSame( $nonce_generated, $this->test_nfg1->get_nonce() );
  	}
 
     /**
@@ -115,13 +117,16 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
  	public function test_get_set_nonce() {
 
- 		$nfg = new Nonce_Field_Generator( $this->test_action );
+ 		$nfg = $this->test_nfg1;
 
  		// Getting nonce property: default null.
  		$this->assertNull( $nfg->get_nonce() );
 
 		// Generating the nonce.
  		$nonce_generated = $nfg->generate_nonce();
+
+ 		// Getting nonce property after generation.
+ 		$this->assertNotNull( $nfg->get_nonce() );
 
  		// Overwrite the value generated and setting a new value for the nonce property.
  		$nfg->set_nonce( 'new_nonce' );
@@ -142,7 +147,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
 	public function test_generate_nonce_field(){
 		
-		$nfg = new Nonce_Field_Generator( $this->test_action );
+		$nfg = $this->test_nfg1;
 
 		// Generating the form field.
 		$field_generated = $nfg->generate_nonce_field( false, false );
@@ -163,7 +168,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
  	public function test_generate_nonce_field_referer(){
 		
-		$nfg = new Nonce_Field_Generator( $this->test_action );
+		$nfg = $this->test_nfg1;
 
 		// Generating the form fields.
 		$field_generated = $nfg->generate_nonce_field( true, false );
@@ -184,7 +189,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
  	public function test_generate_nonce_field_echo(){
 		
-		$nfg = new Nonce_Field_Generator( $this->test_action );
+		$nfg = $this->test_nfg1;
 
 		// Building the expected form field.
 		$field_expected = '<input type="hidden" id="_wpnonce" name="_wpnonce" value="' . $this->test_nonce . '" />';
@@ -208,7 +213,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	*/
  	public function test_generate_nonce_field_referer_echo(){
 		
-		$nfg = new Nonce_Field_Generator( $this->test_action );
+		$nfg = $this->test_nfg1;
 
 		// Building the expected form fields.
 		$field_expected = '<input type="hidden" id="_wpnonce" name="_wpnonce" value="' . $this->test_nonce . '" /><input type="hidden" name="_wp_http_referer" value="my-url" />';

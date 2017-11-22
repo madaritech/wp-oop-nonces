@@ -39,7 +39,8 @@ class Nonce_Url_GeneratorTest extends TestCase
  		$this->test_action = 'my_action';
  		$this->test_name = 'my_name';
 
- 		$this->test_nug = new Nonce_Url_Generator( $this->test_action );
+ 		$this->test_nug1 = new Nonce_Url_Generator( $this->test_action );
+ 		$this->test_nug2 = new Nonce_Url_Generator( $this->test_action, $this->test_name );
  		
  		// Building nonce value.
  		$this->test_nonce = \madaritech\nonces\wp_create_nonce( $this->test_action );
@@ -50,8 +51,8 @@ class Nonce_Url_GeneratorTest extends TestCase
  	*/
     public function test_instance() {
 
-		$this->assertInstanceOf( Nonce_Url_Generator::class, new Nonce_Url_Generator( $this->test_action, $this->test_name ) );
-		$this->assertInstanceOf( Nonce_Url_Generator::class, $this->test_nug );
+		$this->assertInstanceOf( Nonce_Url_Generator::class, $this->test_nug1 );
+		$this->assertInstanceOf( Nonce_Url_Generator::class, $this->test_nug2 );
 	}
 
 	/**
@@ -59,7 +60,7 @@ class Nonce_Url_GeneratorTest extends TestCase
  	*/
 	public function test_get_set_action() {
 
- 		$nug = new Nonce_Url_Generator( $this->test_action, $this->test_name );
+ 		$nug = $this->test_nug2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_action, $nug->get_action() );
@@ -74,7 +75,7 @@ class Nonce_Url_GeneratorTest extends TestCase
  	*/
  	public function test_get_set_name() {
 
- 		$nug = new Nonce_Url_Generator($this->test_action, $this->test_name);
+ 		$nug = $this->test_nug2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_name, $nug->get_name() );
@@ -103,7 +104,7 @@ class Nonce_Url_GeneratorTest extends TestCase
  	*/
  	public function test_generate_nonce() {
 
-		$nug = new Nonce_Url_Generator( $this->test_action );
+		$nug = $this->test_nug1;
 
 		// The constructor sets nonce property to null. Checking null value.
 		$this->assertNull( $nug->get_nonce() );
@@ -120,7 +121,7 @@ class Nonce_Url_GeneratorTest extends TestCase
  	*/
  	public function test_get_set_nonce() {
 
- 		$nug = new Nonce_Url_Generator( $this->test_action );
+ 		$nug = $this->test_nug1;
 
  		// Getting nonce property.
  		$this->assertNull( $nug->get_nonce() );
@@ -144,7 +145,7 @@ class Nonce_Url_GeneratorTest extends TestCase
  	public function test_generate_nonce_url(){
 
 		// Generate the nonce and build the url.
-		$url_generated = $this->test_nug->generate_nonce_url( 'http://www.madaritech.com' );
+		$url_generated = $this->test_nug1->generate_nonce_url( 'http://www.madaritech.com' );
 
 		// Building the expected url.
 		$url_expected = 'http://www.madaritech.com?_wpnonce='. $this->test_nonce;

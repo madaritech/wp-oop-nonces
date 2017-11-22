@@ -39,7 +39,8 @@ class Nonce_ValidatorTest extends TestCase
  		$this->test_action = 'my_action';
  		$this->test_name = 'my_name';
 
- 		$this->test_validator = new Nonce_Validator( $this->test_action );
+ 		$this->test_validator1 = new Nonce_Validator( $this->test_action );
+ 		$this->test_validator2 = new Nonce_Validator( $this->test_action, $this->test_name );
  		
  		// Building nonce value.
  		$this->test_nonce = \madaritech\nonces\wp_create_nonce( $this->test_action );
@@ -50,8 +51,8 @@ class Nonce_ValidatorTest extends TestCase
  	*/
     public function test_instance() {
 
-		$this->assertInstanceOf( Nonce_Validator::class, new Nonce_Validator( $this->test_action, $this->test_name ) );
-		$this->assertInstanceOf( Nonce_Validator::class, new Nonce_Validator( $this->test_action ) );
+		$this->assertInstanceOf( Nonce_Validator::class, $this->test_validator2 );
+		$this->assertInstanceOf( Nonce_Validator::class, $this->test_validator1 );
 	}
 
 	/**
@@ -59,7 +60,7 @@ class Nonce_ValidatorTest extends TestCase
  	*/
 	public function test_get_set_action() {
 
- 		$nv = new Nonce_Validator( $this->test_action, $this->test_name );
+ 		$nv = $this->test_validator2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_action, $nv->get_action() );
@@ -74,7 +75,7 @@ class Nonce_ValidatorTest extends TestCase
  	*/
  	public function test_get_set_name() {
 
- 		$nv = new Nonce_Validator($this->test_action, $this->test_name);
+ 		$nv = $this->test_validator2;
 
  		// Check the getter.
  		$this->assertSame( $this->test_name, $nv->get_name() );
@@ -104,11 +105,11 @@ class Nonce_ValidatorTest extends TestCase
  	public function test_validate_nonce() {
 
  		// Check validating method.
- 		$is_valid = $this->test_validator->validate_nonce( $this->test_nonce );
+ 		$is_valid = $this->test_validator1->validate_nonce( $this->test_nonce );
  		$this->assertTrue( $is_valid );
 
 		// Injecting wrong value in the nonce.
- 		$is_valid = $this->test_validator->validate_nonce( $this->test_nonce . 'failure' );
+ 		$is_valid = $this->test_validator1->validate_nonce( $this->test_nonce . 'failure' );
  		
  		// Check failure on validating.
  		$this->assertFalse( $is_valid );
@@ -122,17 +123,17 @@ class Nonce_ValidatorTest extends TestCase
  		$test_name = '_wpnonce';
 
  		// Build the $_REQUEST
- 		$_REQUEST[ '_wpnonce' ] = $this->test_nonce;
+ 		$_REQUEST[ $test_name ] = $this->test_nonce;
 
  		// Checking validation method.
- 		$is_valid = $this->test_validator->validate_request();
+ 		$is_valid = $this->test_validator1->validate_request();
  		$this->assertTrue( $is_valid );
 
 		// Injecting wrong value in the nonce.
-		$_REQUEST[ '_wpnonce' ] = $this->test_nonce . 'failure';
+		$_REQUEST[ $test_name ] = $this->test_nonce . 'failure';
 
 		// Check failure on validating.
- 		$is_valid = $this->test_validator->validate_request();
+ 		$is_valid = $this->test_validator1->validate_request();
  		$this->assertFalse( $is_valid );
  	}
 }
