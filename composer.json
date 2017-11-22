@@ -1,5 +1,5 @@
 {
-    "name": "madaritech/nonces",
+    "name": "madaritech/wp-oop-nonces",
     "description": "Classes that serves the WordPress Nonces functionality in an object oriented way.",
     "keywords": ["WordPress", "Nonces", "OOP"],
     "require": {
