@@ -75,6 +75,7 @@ final class Nonce_Validator extends Nonce_Abstract {
 	public function validate_nonce( $param_nonce ) {
 
 		$is_valid = false;
+		
 		$this->set_nonce( $param_nonce );
 		$is_valid = $this->validate();
 

@@ -8,7 +8,7 @@
 namespace madaritech\nonces;
 
 /**
- * The class for the url generation with nonce.
+ * The class for the url generation with nonce query arg (GET).
  */
 final class Nonce_Url_Generator extends Nonce_Generator {
 

@@ -8,7 +8,7 @@
 namespace madaritech\nonces;
 
 /**
- * The class for the form nonce field generation.
+ * The class for the form nonce field generation (POST).
  */
 final class Nonce_Field_Generator extends Nonce_Generator {
 
