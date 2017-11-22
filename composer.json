@@ -1,6 +1,7 @@
 {
     "name": "madaritech/wp-oop-nonces",
     "description": "Classes that serves the WordPress Nonces functionality in an object oriented way.",
+    "homepage": "https://github.com/madaritech/wp-oop-nonces",
     "keywords": ["WordPress", "Nonces", "OOP"],
     "require": {
         "php": "5.6.*"
