@@ -1,6 +1,12 @@
 # wp-oop-nonces
 Package that serves the WordPress Nonces functionality (`wp_nonce_*()`) in an object orientated way.
 
+## Requirements
+
+- PHP 5.6+
+- Composer
+- WordPress
+
 ## Installation
 
 Install with [Composer](https://getcomposer.org):
