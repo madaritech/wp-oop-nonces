@@ -5,7 +5,7 @@ Package that serves the WordPress Nonces functionality (`wp_nonce_*()`) in an ob
 
 - PHP 5.6+
 - Composer
-- WordPress
+- WordPress 4.8.3+
 
 ## Installation
 
