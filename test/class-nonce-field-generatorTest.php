@@ -139,7 +139,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	}
 
     /**
- 	* Test the generate_nonce_field method to build form field with a nonce parameter to send on via POST. Here the 
+ 	* Test the generate_nonce_field method to build form field with a nonce parameter to send via POST. Here the 
  	* parameter refer and echo are called with values:
 	*
 	*	referer: false ---> hidden field with refer url value is not added.
@@ -160,7 +160,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	}
 
     /**
- 	* Test the generate_nonce_field method to build form field with a nonce parameter to send on via POST. Here the 
+ 	* Test the generate_nonce_field method to build form field with a nonce parameter to send via POST. Here the 
  	* parameter refer and echo are called with values:
 	*
 	*	referer: true ---> hidden field with refer url value is added.
@@ -181,7 +181,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	}
 
     /**
- 	* Test the generate_nonce_field method to build form field with a nonce parameter to send on via POST. Here the 
+ 	* Test the generate_nonce_field method to build form field with a nonce parameter to send via POST. Here the 
  	* parameter refer and echo are called with values:
 	*
 	*	referer: false ---> hidden field with refer url value is not added.
@@ -205,7 +205,7 @@ class Nonce_Field_GeneratorTest extends TestCase
  	}
 
     /**
- 	* Test the generate_nonce_field method to build form field with a nonce parameter to send on via POST. Here the 
+ 	* Test the generate_nonce_field method to build form field with a nonce parameter to send via POST. Here the 
  	* parameter refer and echo are called with values:
 	*
 	*	referer: true ---> hidden field with refer url value is added.
