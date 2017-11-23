@@ -65,7 +65,7 @@ $field_generator = new Nonce_Field_Generator( 'action_parameter' );
 
 Optionally, the constructor accepts other parameters that affects the nonce field generation result (`generate_nonce_field()` method):
 
-1. *name*: the name of the nonce field. Defaults to *_wpnonce*.
+1. *name*: the name of the nonce field. Defaults to *'_wpnonce'*.
 1. *referer*: boolean value to add an hidden field with refer url value. Set it to *false* to not add the field. Defaults to *true*.
 1. *echo*: boolean value to print the field/s. Set it to *false* to not print the fields, but return them as string. Defaults to *true*. 
 
