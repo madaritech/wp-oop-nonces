@@ -34,9 +34,9 @@ $nonce = $generator->generate_nonce();
 ```
 
 ### Nonce Url Generation
-To add a nonce to a URL, WordPress uses `wp_nonce_url()` specifying the bare *url* and a string representing the *action*. Optionally is possible to specify a string for the *name*, otherwise it defaults to *_wpnonce*.
+To add a nonce to a URL, WordPress uses `wp_nonce_url()` specifying the bare *url* and a string representing the *action*. Optionally is possible to specify a string for the *name* parameter, otherwise it defaults to *'_wpnonce'*.
 
-Similarly, to generate a url with a nonce query parameter use the `Nonce_Url_Generator` class with the proper *action* value and optionally with the proper *name*, otherwise it defaults to `_wp_nonce`.
+Similarly, to generate a url with a nonce query parameter use the `Nonce_Url_Generator` class with the proper *action* value and optionally with the proper *name* parameter, otherwise it defaults to *'_wp_nonce'*.
 
 ```php
 $url_generator = new Nonce_Url_Generator( 'action_parameter' );
