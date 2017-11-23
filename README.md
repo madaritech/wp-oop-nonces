@@ -15,6 +15,15 @@ Install with [Composer](https://getcomposer.org):
 $ composer require madaritech/wp-oop-nonces
 ```
 
+## Run the tests
+To run tests, executes commands below:
+
+```sh
+$ cd vendor/madaritech/wp-oop-nonces
+$ composer install
+$ vendor/bin/phpunit
+```
+
 ## Usage
 The code refers to the wordPress workflow for nonce creation and verification. For more info see [Codex](https://codex.wordpress.org/WordPress_Nonces).
 
@@ -107,12 +116,3 @@ $is_valid = $validator->validate_request();
 ```
 
 If the validation is successful the method returns *true*; *false* otherwise.
-
-## Run the tests
-To run tests, executes commands below:
-
-```sh
-$ cd vendor/madaritech/wp-oop-nonces
-$ composer install
-$ vendor/bin/phpunit
-```
