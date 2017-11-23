@@ -19,7 +19,8 @@ $ composer require madaritech/wp-oop-nonces
 The code refers to the wordPress workflow for nonce creation and verification. For more info see [Codex](https://codex.wordpress.org/WordPress_Nonces).
 
 ### Nonce Generation
-In WordPress the nonce generation is achieved with the `wp_create_nonce()` function specifying a string representing the action. 
+In WordPress the nonce generation is achieved with the `wp_create_nonce()` function specifying a string representing the action.
+
 Similarly, to proceed with nonce generation use the `Nonce_Generator` class with the proper *action*:
 
 ```php
